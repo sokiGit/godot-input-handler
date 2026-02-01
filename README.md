@@ -1,5 +1,10 @@
 # Godot Input Handler System
-`v1.0.0`, `Developed using Godot 4.6`, `Expected compatibility Godot 4.x`
+
+![v1.0.0, Godot 4.x](https://img.shields.io/badge/v1.0.0-Godot_4.x-blue?style=for-the-badge)
+
+[![Available on Itch.io](https://img.shields.io/badge/Available_on-Itch.io-red?style=for-the-badge)](https://sokiuwu.itch.io/godot-input-handler)
+[![Available on Godot Asset Library](https://img.shields.io/badge/Available_on-Godot_Asset_Library-blue?style=for-the-badge)](https://godotengine.org/asset-library/asset/20610)
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S51Q99DO)
 
 This is an easy-to-use Godot input handler that solves many problems you might face while trying to handle user input in your game.
 
