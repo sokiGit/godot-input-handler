@@ -1,6 +1,6 @@
 # Godot Input Handler System
 
-![v1.0.1, Godot 4.x](https://img.shields.io/badge/Available_on-Godot_Asset_Library-blue?style=for-the-badge)
+![v1.0.1, Godot 4.x](https://img.shields.io/badge/v1.1.0-Godot_4.x-blue?style=for-the-badge)
 
 [![Available on Itch.io](https://img.shields.io/badge/Available_on-Itch.io-red?style=for-the-badge)](https://sokiuwu.itch.io/godot-input-handler)
 [![Available on Godot Asset Library](https://img.shields.io/badge/Available_on-Godot_Asset_Library-blue?style=for-the-badge)](https://godotengine.org/asset-library/asset/20610)
