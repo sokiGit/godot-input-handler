@@ -1,7 +1,6 @@
 # You probably don't need to modify this file.
 
-extends Node
-class_name InputHandler
+class_name InputHandler extends Node
 
 @export var enabled: bool = true;
 
@@ -18,7 +17,8 @@ func _input(event: InputEvent) -> void:
 		if not child.enabled: continue
 		for action_name in child.action_bindings.keys():
 			if event.is_action(action_name):
-				match child.action_bindings[action_name]:
+				var trigger_mode = child.action_bindings[action_name];
+				match trigger_mode:
 				# Check the trigger mode
 				# You probably shouldn't change this part
 
@@ -30,11 +30,18 @@ func _input(event: InputEvent) -> void:
 						if event.is_pressed() or event.is_echo():
 							continue
 					
-					InputSubhandler.TriggerMode.PRESSED_CONTINUOUS:
-						if not event.is_pressed():
+					InputSubhandler.TriggerMode.ECHO:
+						if not event.is_pressed() or not event.is_echo():
 							continue
+					
+					_:
+						# This should not happen, if it does, it's a very weird bug
+						push_error("Skipping because provided TriggerMode for action '%s' was an invalid value: %s" % [ str(action_name), str(trigger_mode) ]);
+						continue
 
-				match child.activate(event):
+				var activation_return_state = child.activate(event);
+
+				match activation_return_state:
 				# What happens after the subhandler processes the input
 				# Feel free to change to your liking
 
@@ -59,4 +66,11 @@ func _input(event: InputEvent) -> void:
 					InputHandledState.HALNDED_CONTINUE_PROCESSING:
 						# The input was handled, but allow further processing
 						get_viewport().set_input_as_handled()
+						break
+					
+					_:
+						# Default
+						# For anything else that might be returned by the function,
+						# including unhandled or unexpected values
+						push_warning("Breaking because %s.activate(...) returned an unexpected value: %s" % [ child.name, str(activation_return_state) ]);
 						break
