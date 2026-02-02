@@ -1,28 +1,26 @@
-extends Node
-class_name InputSubhandler
+class_name InputSubhandler extends Node
+
+@export var enabled: bool = true;
 
 @export_category("Action-to-Mode Bindings")
 @export var action_bindings: Dictionary[String, TriggerMode] = {};
 
-@export_category("Settings")
-@export var enabled: bool = true;
-
 enum TriggerMode {
     JUST_PRESSED, # Only trigger when the action is just pressed
     JUST_RELEASED, # Only trigger when the action is just released
-    PRESSED_CONTINUOUS, # Trigger continuously while the action is held down (depends on your OS's settings)
+    ECHO, # Trigger continuously while the action is held down (after a delay, depends on user's OS settings)
         # Note: Maybe this should be called "ECHO", that's what Godot calls it internally
 }
 
 func _on_activate(_event: InputEvent) -> InputHandler.InputHandledState:
-# The internal method to be overridden by subclasses to handle input
-# This is the method you should change in your subclasses
-# Feel free to change this default method
+## The internal method to be overridden by subclasses to handle input
+## This is the method you should change in your subclasses
+## Feel free to change this default method
     return InputHandler.InputHandledState.UNHANDLED # Return UNHANDLED by default
 
 func activate(event: InputEvent) -> InputHandler.InputHandledState:
-# The external method called by InputHandler to activate this subhandler
-# You probably shouldn't change this method
+## The external method called by InputHandler to activate this subhandler
+## You probably shouldn't change this method
 
     if not enabled:
         return InputHandler.InputHandledState.UNHANDLED
